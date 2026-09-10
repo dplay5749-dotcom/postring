@@ -1,0 +1,89 @@
+<style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    img {
+        width: 350px;
+        max-width: 90%;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    button {
+        padding: 15px 35px;
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    #yes {
+        background: #4caf50;
+        color: white;
+    }
+
+    #no {
+        background: #f44336;
+        color: white;
+        position: relative;
+    }
+
+    #bald {
+        display: none;
+    }
+</style>
+<div class="container">
+
+    <div id="question">
+        <img src="before.jpg" alt="Фото">
+        
+        <h1>Facem postring sau nu? 😂</h1>
+
+        <button id="yes">DA</button>
+        <button id="no">NU</button>
+    </div>
+
+    <div id="result">
+        <img id="bald" src="bald.jpg" alt="POSTRING">
+        <h1>GATA... 😂</h1>
+    </div>
+
+</div>
+
+<script>
+    const noButton = document.getElementById("no");
+    const yesButton = document.getElementById("yes");
+    const question = document.getElementById("question");
+    const result = document.getElementById("result");
+    const baldImage = document.getElementById("bald");
+
+    noButton.addEventListener("mouseover", function () {
+        const x = Math.random() * 300 - 150;
+        const y = Math.random() * 200 - 100;
+
+        noButton.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yesButton.addEventListener("click", function () {
+        question.style.display = "none";
+        result.style.display = "block";
+        baldImage.style.display = "inline-block";
+    });
+</script>
