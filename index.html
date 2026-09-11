@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Soarta Părului</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow-x: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(255, 35, 90, 0.35),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(130, 50, 255, 0.35),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(255, 80, 30, 0.22),
+                    transparent 35%
+                ),
+                #07070c;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            opacity: 0.35;
+
+            pointer-events: none;
+
+            animation: floating 8s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            background: #ff174f;
+
+            top: -150px;
+            left: -100px;
+        }
+
+        body::after {
+            background: #7b2cff;
+
+            bottom: -150px;
+            right: -100px;
+
+            animation-delay: 2s;
+        }
+
+        @keyframes floating {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(60px, 40px) scale(1.15);
+            }
+        }
+
+        .container {
+            position: relative;
+
+            z-index: 2;
+
+            width: 92%;
+            max-width: 650px;
+
+            margin: 30px auto;
+
+            padding: 35px;
+
+            text-align: center;
+
+            background: rgba(15, 15, 23, 0.72);
+
+            border: 1px solid rgba(255, 255, 255, 0.13);
+
+            border-radius: 30px;
+
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 30px 100px rgba(0, 0, 0, 0.7),
+                inset 0 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            margin: 5px 0 10px;
+
+            font-size: clamp(28px, 6vw, 44px);
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            margin: 25px 0 20px;
+
+            font-size: clamp(23px, 5vw, 32px);
+        }
+
+        .subtitle {
+            color: #aaaab8;
+
+            font-size: 16px;
+
+            margin-bottom: 28px;
+        }
+
+        .photo-box {
+            position: relative;
+
+            width: 100%;
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.55),
+                0 0 35px rgba(255, 30, 90, 0.08);
+        }
+
+        .photo-box img {
+            display: block;
+
+            width: 100%;
+
+            max-height: 450px;
+
+            object-fit: cover;
+        }
+
+        .buttons {
+            position: relative;
+
+            min-height: 85px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        button {
+            border: none;
+
+            padding: 16px 25px;
+
+            border-radius: 14px;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.2s ease;
+        }
+
+        /* Кнопка DA */
+        #yes,
+        #yes2 {
+            background: linear-gradient(
+                135deg,
+                #ff174f,
+                #b000ff
+            );
+
+            color: white;
+
+            box-shadow:
+                0 8px 30px rgba(255, 23, 79, 0.35);
+        }
+
+        #yes:hover,
+        #yes2:hover {
+            transform: scale(1.08);
+
+            box-shadow:
+                0 12px 45px rgba(255, 23, 79, 0.55);
+        }
+
+        /* Кнопка NU */
+        #no,
+        #no2 {
+            background: rgba(255, 255, 255, 0.08);
+
+            color: white;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            transition:
+                transform 0.15s ease,
+                background 0.2s ease;
+        }
+
+        #no:hover,
+        #no2:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .vote-box {
+            margin-top: 15px;
+
+            padding: 17px;
+
+            border-radius: 18px;
+
+            background: rgba(255, 255, 255, 0.045);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .vote-text {
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #bdbdca;
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+        }
+
+        .vote-text b {
+            color: white;
+        }
+
+        .vote-bar {
+            width: 100%;
+
+            height: 10px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border-radius: 100px;
+
+            overflow: hidden;
+        }
+
+        #yesBar {
+            width: 87%;
+
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                #ff174f,
+                #b000ff
+            );
+
+            border-radius: 100px;
+
+            transition: width 0.7s ease;
+        }
+
+        .votes-count {
+            margin: 10px 0 0;
+
+            color: #777784;
+
+            font-size: 12px;
+        }
+
+        .warning {
+            margin-top: 22px;
+
+            color: #777784;
+
+            font-size: 13px;
+        }
+
+        #result {
+            display: none;
+        }
+
+        .result-title {
+            font-size: 48px;
+
+            margin-bottom: 5px;
+        }
+
+        .result-text {
+            color: #aaaab8;
+
+            margin-bottom: 25px;
+        }
+
+        #bald {
+            width: 100%;
+
+            max-height: 450px;
+
+            object-fit: cover;
+
+            border-radius: 22px;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.65);
+
+            animation: appear 0.8s ease forwards;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+
+                transform: scale(0.8);
+
+                filter: blur(10px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: scale(1);
+
+                filter: blur(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                align-items: flex-start;
+            }
+
+            .container {
+                width: 94%;
+
+                margin: 18px auto;
+
+                padding: 22px 17px;
+
+                border-radius: 24px;
+            }
+
+            .icon {
+                font-size: 40px;
+            }
+
+            .buttons {
+                min-height: 100px;
+
+                gap: 8px;
+            }
+
+            button {
+                padding: 14px 17px;
+
+                font-size: 14px;
+            }
+
+            .photo-box img,
+            #bald {
+                max-height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ПЕРВЫЙ ЭКРАН -->
+
+        <div id="question">
+
+            <div class="icon">
+                💈
+            </div>
+
+            <h1>
+                Soarta părului lui
+            </h1>
+
+            <p class="subtitle">
+                Astăzi, TU iei decizia...
+            </p>
+
+            <div class="photo-box">
+
+                <img
+                    src="before.jpg"
+                    alt="Înainte de tunsoare"
+                >
+
+            </div>
+
+            <h2>
+                Îl tundem sau nu? 😈
+            </h2>
+
+            <div class="buttons">
+
+                <button id="yes">
+                    DA, ÎL TUNDEM 😈
+                </button>
+
+                <button id="no">
+                    NU 😇
+                </button>
+
+            </div>
+
+            <div class="vote-box">
+
+                <div class="vote-text">
+
+                    <span>
+                        DA — <b id="yesPercent">87%</b>
+                    </span>
+
+                    <span>
+                        NU — <b id="noPercent">13%</b>
+                    </span>
+
+                </div>
+
+                <div class="vote-bar">
+
+                    <div id="yesBar"></div>
+
+                </div>
+
+                <p class="votes-count">
+                    1 248 persoane au votat
+                </p>
+
+            </div>
+
+            <p class="warning">
+                ⚠️ Alegerea ta îi poate schimba viața pentru totdeauna...
+            </p>
+
+        </div>
+
+
+        <!-- РЕЗУЛЬТАТ -->
+
+        <div id="result">
+
+            <div class="icon">
+                💀
+            </div>
+
+            <h1 class="result-title">
+                GATA.
+            </h1>
+
+            <p class="result-text">
+                Decizia a fost luată... 😂
+            </p>
+
+            <img
+                id="bald"
+                src="bald.jpg"
+                alt="După tunsoare"
+            >
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const noButton =
+            document.getElementById("no");
+
+        const yesButton =
+            document.getElementById("yes");
+
+        const question =
+            document.getElementById("question");
+
+        const result =
+            document.getElementById("result");
+
+
+        let firstNoClick = true;
+
+
+        /* =====================================
+           ПЕРВАЯ КНОПКА NU — УБЕГАЕТ
+        ===================================== */
+
+        noButton.addEventListener(
+            "mouseenter",
+            function () {
+
+                const maxX = 180;
+
+                const maxY = 100;
+
+                const x =
+                    Math.random() * maxX * 2 - maxX;
+
+                const y =
+                    Math.random() * maxY * 2 - maxY;
+
+                noButton.style.transform =
+                    `translate(${x}px, ${y}px)`;
+
+            }
+        );
+
+
+        /* =====================================
+           ПЕРВАЯ КНОПКА NU — НАЖАТИЕ
+        ===================================== */
+
+        noButton.addEventListener(
+            "click",
+            function () {
+
+                if (firstNoClick) {
+
+                    firstNoClick = false;
+
+
+                    question.innerHTML = `
+
+                        <div class="icon">
+                            🤨
+                        </div>
+
+                        <h1>
+                            Da tu matinca ai ahuit? 
+                        </h1>
+
+                        <p class="subtitle">
+                            Trebuie să-i facem POSTRING! 💈✂️
+                        </p>
+
+                        <div class="photo-box">
+
+                            <img
+                                src="before.jpg"
+                                alt="Înainte"
+                            >
+
+                        </div>
+
+                        <h2>
+                            Îi dam postring sau nu? 😈
+                        </h2>
+
+                        <div class="buttons">
+
+                            <button id="yes2">
+                                DA 😈
+                            </button>
+
+                            <button id="no2">
+                                NU 😇
+                            </button>
+
+                        </div>
+
+                        <p class="warning">
+                            De data asta nu te gandi
+                        </p>
+
+                    `;
+
+
+                    const yes2 =
+                        document.getElementById("yes2");
+
+                    const no2 =
+                        document.getElementById("no2");
+
+
+                    /* =====================================
+                       ВТОРАЯ КНОПКА NU — УБЕГАЕТ
+                    ===================================== */
+
+                    no2.addEventListener(
+                        "mouseenter",
+                        function () {
+
+                            const x =
+                                Math.random() * 360 - 180;
+
+                            const y =
+                                Math.random() * 200 - 100;
+
+                            no2.style.transform =
+                                `translate(${x}px, ${y}px)`;
+
+                        }
+                    );
+
+
+                    /* =====================================
+                       ВТОРАЯ КНОПКА DA
+                    ===================================== */
+
+                    yes2.addEventListener(
+                        "click",
+                        function () {
+
+                            question.style.display =
+                                "none";
+
+                            result.style.display =
+                                "block";
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =====================================
+           ПЕРВАЯ КНОПКА DA
+        ===================================== */
+
+        yesButton.addEventListener(
+            "click",
+            function () {
+
+                document.getElementById(
+                    "yesPercent"
+                ).textContent = "100%";
+
+
+                document.getElementById(
+                    "noPercent"
+                ).textContent = "0%";
+
+
+                document.getElementById(
+                    "yesBar"
+                ).style.width = "100%";
+
+
+                setTimeout(
+                    function () {
+
+                        question.style.display =
+                            "none";
+
+                        result.style.display =
+                            "block";
+
+                    },
+                    700
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
